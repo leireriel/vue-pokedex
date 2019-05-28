@@ -33,19 +33,11 @@
          <p class="checkboxes-list-title">Type</p>
          <div class="checkboxes-list">
             <!-- Type Selector -->
-            <div class="md-checkbox">
-               <input id="checkbox-grass" type="checkbox" value="grass">
-               <label for="checkbox-grass">
-                  <i class="material-icons" style="color: rgb(120, 200, 80);">lens</i>
-                  <span class="label-title">grass</span>
-               </label>
-            </div>
-            <!-- Type Selector -->
-            <div class="md-checkbox">
-               <input id="checkbox-poison" type="checkbox" value="poison">
-               <label for="checkbox-poison">
-                  <i class="material-icons" style="color: rgb(160, 64, 160);">lens</i>
-                  <span class="label-title">poison</span>
+            <div v-for="(color, type) in typeColor" class="md-checkbox">
+               <input :id="type" type="checkbox" :value="type" v-model="selectedTypes">
+               <label :for="type">
+                  <i class="material-icons" :style="{color: color}">lens</i>
+                  <span class="label-title">{{ type }}</span>
                </label>
             </div>
 

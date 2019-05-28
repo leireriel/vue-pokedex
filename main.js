@@ -19,6 +19,7 @@ const app = new Vue({
         "height": 4,
         "weight": 60
       },
+      selectedTypes: [],
       typeColor: {
         "grass": "#78C850",
         "poison": "#A040A0",
@@ -35,7 +36,11 @@ const app = new Vue({
   computed: {
     filteredPokemons() {
       return this.pokemons
-        .filter(pokemon => pokemon.name.includes(this.searchText));
+        .filter(pokemon => pokemon.name.includes(this.searchText))
+        .filter(pokemon => {
+          if (this.selectedTypes.length === 0) return true;
+          return pokemon.types.some(type => this.selectedTypes.includes(type))
+        });
     }
   },
   methods: {
@@ -45,7 +50,8 @@ const app = new Vue({
     }
   },
   created() {
-    fetch('https://api.jsonbin.io/b/5ab37f77989617146bd6eb29')
+    // fetch('https://api.jsonbin.io/b/5ab37f77989617146bd6eb29')
+    fetch('/data/pokemons.json')
       .then(response => response.json())
       .then(pokemonsData => {
         // debugger;
