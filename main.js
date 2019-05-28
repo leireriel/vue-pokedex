@@ -2,6 +2,7 @@ const app = new Vue({
   el: '#app',
   data() {
     return {
+      searchText: '',
       message: 'soy el estado',
       pokemon: {
         "id": 25,
@@ -30,6 +31,18 @@ const app = new Vue({
       },
       pokemons: [],
     };
+  },
+  computed: {
+    filteredPokemons() {
+      return this.pokemons
+        .filter(pokemon => pokemon.name.includes(this.searchText));
+    }
+  },
+  methods: {
+    removePokemon(pokemon) {
+      this.pokemons = this.pokemons
+        .filter(poke => poke !== pokemon);
+    }
   },
   created() {
     fetch('https://api.jsonbin.io/b/5ab37f77989617146bd6eb29')

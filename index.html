@@ -26,7 +26,7 @@
          <!-- ASÍ (ABAJO) SE PINTA EL ESTADO -->
          {{ message }}
          <div class="nice-input-wrapper">
-            <input type="text" placeholder="Search by name" class="nice-input">
+            <input v-model="searchText" type="text" placeholder="Search by name" class="nice-input">
             <span class="focus-border"><i></i></span>
          </div>
          <!-- Type Filters -->
@@ -55,12 +55,12 @@
       <main class="main-view">
          <article class="pokemons-list">
             <!-- Pokemon Card -->
-            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon-card">
+            <div v-for="pokemon in filteredPokemons" :key="pokemon.id" class="pokemon-card">
                <div class="background-wrapper">
                   <div v-for="type in pokemon.types" :key="type" :style="{'background-color': typeColor[type]}"></div>
                   <!-- <div style="background-color: rgb(120, 200, 80);"></div> -->
                </div>
-               <span class="remove-pokemon">
+               <span @click="removePokemon(pokemon)" class="remove-pokemon">
                   <i class="material-icons">close</i>
                </span>
                <div class="image-wrapper">
