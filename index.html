@@ -55,9 +55,9 @@
       <main class="main-view">
          <article class="pokemons-list">
             <!-- Pokemon Card -->
-            <div class="pokemon-card">
+            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon-card">
                <div class="background-wrapper">
-                  <div :style="'background-color: ' + typeColor[pokemon.types[0]]"></div>
+                  <div v-for="type in pokemon.types" :key="type" :style="{'background-color': typeColor[type]}"></div>
                   <!-- <div style="background-color: rgb(120, 200, 80);"></div> -->
                </div>
                <span class="remove-pokemon">

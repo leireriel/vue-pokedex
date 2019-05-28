@@ -28,13 +28,15 @@ const app = new Vue({
         "normal": "#A8A878",
         "electric": "#F8D030"
       },
+      pokemons: [],
     };
   },
   created() {
     fetch('https://api.jsonbin.io/b/5ab37f77989617146bd6eb29')
       .then(response => response.json())
-      .then(pokemons => {
+      .then(pokemonsData => {
         // debugger;
+        this.pokemons = pokemonsData;
       })
   }
 });
